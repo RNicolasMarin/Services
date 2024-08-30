@@ -1,4 +1,4 @@
-package com.example.services
+package com.example.services.cases.foreground_unbound_service.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,16 +12,18 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import com.example.services.cases.foreground_bound_service.view.ForegroundBoundServiceActivity
-import com.example.services.cases.foreground_unbound_service.view.ForegroundUnBoundServiceActivity
-import com.example.services.ui.theme.ServicesTheme
+import com.example.services.R
+import com.example.services.ServiceButton
+import com.example.services.cases.foreground_unbound_service.ForegroundUnBoundService
+import com.example.services.cases.foreground_unbound_service.ForegroundUnBoundService.Companion.ACTION_START
+import com.example.services.cases.foreground_unbound_service.ForegroundUnBoundService.Companion.ACTION_STOP
+import com.example.services.cases.foreground_unbound_service.view.theme.ServicesTheme
 
-class MainActivity : ComponentActivity() {
+class ForegroundUnBoundServiceActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             ServicesTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -32,15 +34,19 @@ class MainActivity : ComponentActivity() {
                         verticalArrangement = Arrangement.Center
                     ) {
                         ServiceButton(
-                            text = stringResource(id = R.string.foreground_unbound_service),
+                            text = stringResource(id = R.string.start_service),
                             onClick = {
-                                startActivity(Intent(this@MainActivity, ForegroundUnBoundServiceActivity::class.java))
+                                startService(Intent(this@ForegroundUnBoundServiceActivity, ForegroundUnBoundService::class.java).apply {
+                                    action = ACTION_START
+                                })
                             }
                         )
                         ServiceButton(
-                            text = stringResource(id = R.string.foreground_bound_service),
+                            text = stringResource(id = R.string.stop_service),
                             onClick = {
-                                startActivity(Intent(this@MainActivity, ForegroundBoundServiceActivity::class.java))
+                                startService(Intent(this@ForegroundUnBoundServiceActivity, ForegroundUnBoundService::class.java).apply {
+                                    action = ACTION_STOP
+                                })
                             }
                         )
                     }
@@ -50,16 +56,3 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
-
-//foreground - bound
-//foreground - unbound
-//background - bound
-//background - unbound
-
-
-
-//foreground
-//background
-//bound
-//unbound

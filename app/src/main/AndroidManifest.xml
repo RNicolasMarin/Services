@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,6 +15,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Services"
         tools:targetApi="31">
+        <activity
+            android:name=".cases.foreground_unbound_service.view.ForegroundUnBoundServiceActivity"
+            android:exported="false"
+            android:label="@string/title_activity_foreground_unbound_service"
+            android:theme="@style/Theme.Services" />
+
+        <activity
+            android:name=".cases.foreground_bound_service.view.ForegroundBoundServiceActivity"
+            android:exported="false"
+            android:label="@string/title_activity_foreground_bound_service"
+            android:theme="@style/Theme.Services" />
+
+        <service
+            android:name=".cases.foreground_unbound_service.ForegroundUnBoundService"
+            android:enabled="true"
+            android:exported="true"
+            android:foregroundServiceType="shortService" />
+        <service
+            android:name=".cases.foreground_bound_service.ForegroundBoundService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".BasicService"
+            android:enabled="true"
+            android:exported="true" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
