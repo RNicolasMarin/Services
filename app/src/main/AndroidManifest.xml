@@ -16,11 +16,32 @@
         android:theme="@style/Theme.Services"
         tools:targetApi="31">
         <activity
+            android:name=".cases.background_unbound_service.view.BackgroundUnBoundServiceActivity"
+            android:exported="false"
+            android:label="@string/title_activity_background_un_bound_service"
+            android:theme="@style/Theme.Services" />
+
+        <service
+            android:name=".cases.background_unbound_service.BackgroundUnBoundService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity
+            android:name=".cases.background_bound_service.view.BackgroundBoundServiceActivity"
+            android:exported="false"
+            android:label="@string/title_activity_background_bound_service"
+            android:theme="@style/Theme.Services" />
+
+        <service
+            android:name=".cases.background_bound_service.BackgroundBoundService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity
             android:name=".cases.foreground_unbound_service.view.ForegroundUnBoundServiceActivity"
             android:exported="false"
             android:label="@string/title_activity_foreground_unbound_service"
             android:theme="@style/Theme.Services" />
-
         <activity
             android:name=".cases.foreground_bound_service.view.ForegroundBoundServiceActivity"
             android:exported="false"

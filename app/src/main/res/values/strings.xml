@@ -1,10 +1,23 @@
 <resources>
     <string name="app_name">Services</string>
+    <string name="choose_service_type">Elegir el tipo de srvicio para probar:</string>
 
     <string name="foreground_unbound_service">Primer Plano y No Vinculado</string>
     <string name="foreground_bound_service">Primer Plano y Vinculado</string>
-    <string name="start_service">Start Service</string>
-    <string name="stop_service">Stop Service</string>
+    <string name="background_bound_service">Segundo Plano y Vinculado</string>
+    <string name="background_unbound_service">Segundo Plano y No Vinculado</string>
+    <string name="background_bound_service_description">Este servicio se ejecuta en segundo plano (background) y esta vinculado. Al "Iniciar Servicio" empieza a incrementar numeros, lo muestra en la pantalla y te vas y volves a esta pantalla continua la cuenta.</string>
+    <string name="background_unbound_service_description">Este servicio se ejecuta en segundo plano (background) y no esta vinculado. Al "Iniciar Servicio" empieza a incrementar numeros, como no esta vinculado no se puede reaccionar a cada cambio en los numeros desde el servicio. Para ver los nuevos numeros cada vez que se emite uno nuevo se lo guarda en un archivo y al "Actualizar Numero" muestra el mas reciente guardado.</string>
+    <string name="foreground_bound_service_description">Este servicio se ejecuta en primer plano (foreground) y esta vinculado. Al "Iniciar Servicio" empieza a incrementar numeros, lo muestra con una notificacion y en la pantalla y si cerras la app continua la cuenta.</string>
+    <string name="foreground_unbound_service_description">Este servicio se ejecuta en primer plano (foreground) y no esta vinculado. Al "Iniciar Servicio" empieza a incrementar numeros, solo lo muestra con una notificacion y si cerras la app continua la cuenta.</string>
+    <string name="start_service">Iniciar Servicio</string>
+    <string name="stop_service">Detener Servicio</string>
+    <string name="current_number">Numero Actual:</string>
+    <string name="has_not_started">Aun no empieza</string>
+    <string name="update_number">Actualizar Numero</string>
     <string name="title_activity_foreground_bound_service">ForegroundBoundServiceActivity</string>
     <string name="title_activity_foreground_unbound_service">ForegroundUnBoundServiceActivity</string>
+    <string name="title_activity_background_bound_service">BackgroundBoundServiceActivity</string>
+    <string name="title_activity_background_un_bound_service">BackgroundUnBoundServiceActivity
+    </string>
 </resources>

@@ -12,7 +12,6 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.TaskStackBuilder
 import androidx.core.content.getSystemService
 import com.example.services.R
-import com.example.services.cases.foreground_bound_service.view.ForegroundBoundServiceActivity
 import com.example.services.cases.foreground_unbound_service.view.ForegroundUnBoundServiceActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

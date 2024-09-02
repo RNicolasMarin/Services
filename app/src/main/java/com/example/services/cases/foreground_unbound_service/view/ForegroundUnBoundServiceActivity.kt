@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.example.services.R
+import com.example.services.ServiceActivityScaffold
 import com.example.services.ServiceButton
 import com.example.services.cases.foreground_unbound_service.ForegroundUnBoundService
 import com.example.services.cases.foreground_unbound_service.ForegroundUnBoundService.Companion.ACTION_START
@@ -28,10 +29,9 @@ class ForegroundUnBoundServiceActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Column(
-                        modifier = Modifier.fillMaxSize(),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
+                    ServiceActivityScaffold(
+                        title = R.string.foreground_unbound_service,
+                        description = R.string.foreground_unbound_service_description
                     ) {
                         ServiceButton(
                             text = stringResource(id = R.string.start_service),

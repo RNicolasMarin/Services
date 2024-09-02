@@ -1,4 +1,4 @@
-package com.example.services.cases.foreground_bound_service.view
+package com.example.services.cases.background_bound_service.view
 
 import android.content.ComponentName
 import android.content.Context
@@ -24,28 +24,29 @@ import androidx.lifecycle.lifecycleScope
 import com.example.services.R
 import com.example.services.ServiceActivityScaffold
 import com.example.services.ServiceButton
-import com.example.services.cases.foreground_bound_service.ForegroundBoundService
-import com.example.services.cases.foreground_bound_service.ForegroundBoundService.Companion.ACTION_START
-import com.example.services.cases.foreground_bound_service.ForegroundBoundService.Companion.ACTION_STOP
-import com.example.services.cases.foreground_bound_service.ForegroundBoundService.Companion.isServiceActive
-import com.example.services.cases.foreground_bound_service.view.ui.theme.ServicesTheme
+import com.example.services.cases.background_bound_service.BackgroundBoundService
+import com.example.services.cases.background_bound_service.BackgroundBoundService.*
+import com.example.services.cases.background_bound_service.BackgroundBoundService.Companion.ACTION_START
+import com.example.services.cases.background_bound_service.BackgroundBoundService.Companion.ACTION_STOP
+import com.example.services.cases.background_bound_service.BackgroundBoundService.Companion.isServiceActive
+import com.example.services.cases.background_bound_service.view.ui.theme.ServicesTheme
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class ForegroundBoundServiceActivity : ComponentActivity() {
+class BackgroundBoundServiceActivity : ComponentActivity() {
 
-    private val viewModel = ForegroundBoundServiceViewModel()
+    private val viewModel = BackgroundBoundServiceViewModel()
 
-    private lateinit var myForegroundService: ForegroundBoundService
+    private lateinit var myBackgroundService: BackgroundBoundService
     private var isBound = false
 
     private val connection = object : ServiceConnection {
 
         override fun onServiceConnected(className: ComponentName, service: IBinder) {
-            val binder = service as ForegroundBoundService.ForegroundBoundBinder
-            myForegroundService = binder.getService()
-            observe(myForegroundService.numberFlow)
+            val binder = service as BackgroundBoundBinder
+            myBackgroundService = binder.getService()
+            observe(myBackgroundService.numberFlow)
             isBound = true
         }
 
@@ -69,6 +70,7 @@ class ForegroundBoundServiceActivity : ComponentActivity() {
             isBound = false
         }
     }
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -84,8 +86,8 @@ class ForegroundBoundServiceActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     ServiceActivityScaffold(
-                        title = R.string.foreground_bound_service,
-                        description = R.string.foreground_bound_service_description
+                        title = R.string.background_bound_service,
+                        description = R.string.background_bound_service_description
                     ) {
                         Text(text = "${stringResource(id = R.string.current_number)} ${viewModel.state}")
 
@@ -95,7 +97,7 @@ class ForegroundBoundServiceActivity : ComponentActivity() {
                             text = stringResource(id = R.string.start_service),
                             onClick = {
                                 bindForegroundBoundService()
-                                startService(Intent(this@ForegroundBoundServiceActivity, ForegroundBoundService::class.java).apply {
+                                startService(Intent(this@BackgroundBoundServiceActivity, BackgroundBoundService::class.java).apply {
                                     action = ACTION_START
                                 })
                             }
@@ -107,7 +109,7 @@ class ForegroundBoundServiceActivity : ComponentActivity() {
 
                                 unbindService(connection)
                                 isBound = false
-                                startService(Intent(this@ForegroundBoundServiceActivity, ForegroundBoundService::class.java).apply {
+                                startService(Intent(this@BackgroundBoundServiceActivity, BackgroundBoundService::class.java).apply {
                                     action = ACTION_STOP
                                 })
                             }
@@ -120,7 +122,7 @@ class ForegroundBoundServiceActivity : ComponentActivity() {
 
     private fun bindForegroundBoundService() {
         isBound = true
-        Intent(this@ForegroundBoundServiceActivity, ForegroundBoundService::class.java).also { intent ->
+        Intent(this@BackgroundBoundServiceActivity, BackgroundBoundService::class.java).also { intent ->
             bindService(intent, connection, Context.BIND_AUTO_CREATE)
         }
     }
